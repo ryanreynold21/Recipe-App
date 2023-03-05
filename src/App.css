@@ -6,3 +6,7 @@
     color: white;
     background-color: orange;
 }
+
+.activeTab{
+    background-color: black;
+}

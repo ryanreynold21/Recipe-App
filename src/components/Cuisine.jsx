@@ -1,8 +1,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import Category from './Category'
 import Layout from './Layout'
+import { motion } from 'framer-motion'
 
 const Cuisine = () => {
     let params = useParams();
@@ -23,10 +23,15 @@ const Cuisine = () => {
         {cuisine?.map(recipe => {
             return(
                 <Link to={`/recipe/`+recipe.idMeal}>
-                <div key={recipe.idMeal} className='card w-80 relative rounded-xl border border-orange-400 p-6 shadow-lg shadow-orange-500'>
-                    <p className='absolute text-emerald-300 bottom-4 md:right-36 sm:right-0 text-2xl font-bold'>{recipe.strMeal}</p>
+                <motion.div
+                    animate={{opacity:1}}
+                    initial={{opacity:0}}
+                    exit={{opacity:0}}
+                    transition={{duration : 0.6}}
+                 key={recipe.idMeal} className='card w-80 relative rounded-xl border border-orange-400 p-6 shadow-lg shadow-orange-500'>
                     <img className=' hover:opacity-60 rounded-lg' src={recipe.strMealThumb} alt="" />
-                </div>
+                    <p className='text-black text-xl font-bold mt-2'>{recipe.strMeal.substring(0,20)}...</p>
+                </motion.div>
                 </Link>
             )
         })}
